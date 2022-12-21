@@ -1,7 +1,7 @@
 # MyNodeBackendShell
 
 <div align="center">
-  <div style="display: flex;">
+  <div style="display: flex;justify-content:center;align-items:center;">
     <img src="https://cdn-icons-png.flaticon.com/512/5968/5968322.png" width=100>
     <img src="https://www.svgrepo.com/show/331488/mongodb.svg" width=100>
     <img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/express-js-icon.svg" width=100>
