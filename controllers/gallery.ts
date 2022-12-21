@@ -8,10 +8,9 @@ import { returnedCRUD } from "../helpers/returnedCRUD";
 import { assertiveJWT, validateFile , validateDelete } from "../middlewares/validators";
 import { validMaster } from "../middlewares/validators";
 
-//Ejemplo de como generar dinamicamente los endpoints de una colección de galeria de fotos. Genero el objeto argumento que necesita la clase generadora, mando a un método que me devuelve la instancia con todos los endpoints, desestructuro hasta obtener todos los endpoints y genero la ruta de cada uno de ellos.
-
 const { pic , title } = galleryEnum;
 
+//Este objeto es el argumento que necesita la abstracción BaseCRUD y extensiones para funcionar:
 const galleryStrategy:documentCRUDinterface = {
     model:'gallery',
     fields:{
@@ -49,7 +48,7 @@ galleryRouter.post('/',[
 ],postPicOfGallery);
 
 galleryRouter.delete('/',[
-    //gJWT,
+    //yourLoginTokenAgent,
     validateDelete,
     validateFile(galleryEnum.pic,false),
     validMaster

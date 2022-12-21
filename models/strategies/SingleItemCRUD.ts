@@ -3,6 +3,9 @@ import { documentCRUDinterface } from '../../interfaces/crudClass.interfaces';
 import { StrategyCRUD } from '../../abstractions/abstractions';
 import { otherFields } from '../../interfaces/enums';
 
+/*
+Este caso de explotación seria la CRUD que gestiona una colección con tan solo un objeto, el cual provee a la web de este supuesto fotógrafo su email de contacto y link a redes sociales:
+*/
 export class SingleItemCRUD<modelInterface> extends StrategyCRUD<modelInterface> {
 
     public fields;

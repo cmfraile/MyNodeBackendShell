@@ -4,7 +4,7 @@ import { crudCases } from "../interfaces/enums";
 import { CollectionCRUD } from "../models/strategies/CollectionCRUD";
 import { SingleItemCRUD } from "../models/strategies/SingleItemCRUD";
 
-//Esta función determina que instancia de estrategia es la indicada para cada caso de uso. Cada caso de uso puede estar vinculada a una o varias colecciones, en función de su comportamiento:
+//Esta función determina que instancia de estrategia es la indicada para cada caso de explotación de colecciones:
 const createStrategy = <modelInterface>(crudConfiguration:documentCRUDinterface):StrategyCRUD<modelInterface> => {
 
     const { model:modelName } = crudConfiguration ;
@@ -17,7 +17,7 @@ const createStrategy = <modelInterface>(crudConfiguration:documentCRUDinterface)
     
 };
 
-//Esta función es la que genera la instancia de estrategia y devuelve con los nombres determinados en el argumento los diferentes endpoints:
+//Esta función es la que genera la instancia de explotación de colecciones asociada a cada colección. La instancia se genera y retorna los endpoints listos para usarse:
 export const returnedCRUD = <modelInterface>(crudConfiguration:documentCRUDinterface):getCRUDtype => {
 
     const strategy = createStrategy<modelInterface>(crudConfiguration);

@@ -5,7 +5,9 @@ import path from 'path';
 import { verify } from 'jsonwebtoken';
 import { otherFields , deleteCases } from '../interfaces/enums';
 
-//Este middleware tan solo añade a la petición si se provee un token válido o no. Yo lo uso para cuando se solicite la información, proveer la ID de los objetos o no, ya que dicha ID es necesaria para el borrado y la edición de los diferentes registros de la base de datos, y relevante exclusivamente para el dueño de la web.
+/*
+Este middleware tan solo determina si el Token de login es válido o no, y es usado posteriormente por los controladores para devolver mas información o menos, mas exactamente la ID de los objetos que se pueden editar o borrar. El usuario administrador los necesita aportar para trabajar la web, pero un espectador no deberia acceder a esos IDs.
+*/
 export const assertiveJWT = async(req:Request,res:Response,next:NextFunction) => {
 
     try{
@@ -23,7 +25,9 @@ export const assertiveJWT = async(req:Request,res:Response,next:NextFunction) =>
     
 }
 
-
+/*
+Esta estructura de middleware permite usar parámetros en el middleware, sin las limitaciones de los middlewares por defecto aportados por express-validator y los middleware que solo funcionan si se ciñen a la definición exigida por el Router de Express.
+*/
 type middlewareReturn = (req:Request,res:Response,next:NextFunction) => Promise<void>
 export const validateFile = (fileToValidate:string,isRequired:boolean):middlewareReturn =>
     async(req,res,next) => {
@@ -33,7 +37,9 @@ export const validateFile = (fileToValidate:string,isRequired:boolean):middlewar
         }catch( err ){ console.log }
     };
 
-//Este middleware exige indicar que campo va a borrarse, y si este refiere a algun que requiere ID, solicitarlo. Yo he añadido throw new Error para indicar el error que salta, pero es mas recomendable devolver la response con el error.
+/*
+Este middleware exige indicar que campo va a borrarse, y si este refiere a algun que requiere ID, solicitarlo. Yo he añadido throw new Error para indicar el error que salta, pero es mas recomendable devolver la response con el error.
+*/
 export const validateDelete = async(req:Request,res:Response,next:NextFunction) => {
 
     try{

@@ -4,7 +4,7 @@ import { validMaster } from '../middlewares/validators';
 import { validRoute } from '../middlewares/validators';
 import { Response , Request } from "express";
 
-//Controlador básico de bajada de ficheros:
+//Controlador básico de muestra de ficheros:
 
 const serveFile = async(req:Request,res:Response) => {
     try{

@@ -1,4 +1,4 @@
-import { connect as MonConnect, ConnectOptions } from "mongoose";
+import { connect as MongooseConnect, ConnectOptions } from "mongoose";
 
 export const dataBaseConnection = async() => {
     try{
@@ -7,6 +7,6 @@ export const dataBaseConnection = async() => {
             pass:process.env.PASSDATABASE,
             dbName:process.env.DATABASENAME};
         //En mi caso uso mongoDB en un contenedor de docker:
-        await MonConnect(`mongodb://${process.env.DATABASEIP}/${options.dbName}`,options,(err) => console.log);
+        await MongooseConnect(`mongodb://${process.env.DATABASEIP}/${options.dbName}`,options,(err) => console.log);
     }catch(err){console.log(err);throw new Error('No se logro establecer la conexión')};
 }

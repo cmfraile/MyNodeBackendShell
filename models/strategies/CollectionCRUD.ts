@@ -3,6 +3,9 @@ import { documentCRUDinterface } from '../../interfaces/crudClass.interfaces';
 import { StrategyCRUD } from '../../abstractions/abstractions';
 import { otherFields } from '../../interfaces/enums';
 
+/*
+Esto seria un caso de explotación de colecciones del supuesto. Genero una clase que hereda la abstracción final, obligándome a definir todas las abstracciones. Aqui tendríamos la clase que gestiona todas las colecciones que contienen varios objetos similares, y que en mi caso asocio tan solo a la colección de galeria de este supuesto fotógrafo:
+*/
 export class CollectionCRUD<modelInterface> extends StrategyCRUD<modelInterface>{
     
     public fields;

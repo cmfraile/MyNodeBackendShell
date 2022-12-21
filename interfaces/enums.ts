@@ -1,6 +1,8 @@
-// Para evitar problemas de nombres, llamado de variables, entre otros, es recomendable usar diccionarios de este tipo que llamen al string literal de dicha propiedad, para que un cambio aqui ponga de acuerdo al resto del programa. Recomendable llevar este mismo diccionario al front:
+/*
+Para centralizar los nombres de variables, propiedades y otros, es un tanto imprudente nombrarlos donde se emplean, ya que en caso de cambios o errores, es mas dificil rastrear el problema. Yo uso diccionarios con esos nombres para que todos tengan en común los mismos términos y un cambio aqui lo replique en el resto de lugares que necesitan de esos nombres:
+*/
 
-//SchemaProperties:
+//Propiedades de Schemas
 enum gallery {
     pic = 'pic',
     title = 'title',
@@ -12,6 +14,7 @@ enum misc {
     email = 'email'
 };
 
+//Nombres en común de otras propiedades:
 enum otherFields {
     uploadDate = 'uploadDate',
     fieldToDelete = 'fieldToDelete',
@@ -24,6 +27,7 @@ enum deleteCases {
     instagram = 'instagram',
     email = 'email'
 };
+
 
 const validExtensionFile:{[key:string]:string[]} = {
     images:['png','jpg','jpeg'],

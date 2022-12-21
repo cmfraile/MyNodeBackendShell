@@ -6,6 +6,10 @@ import { crudEndpointsNames } from '../interfaces/crudClass.interfaces';
 import { modelTypes } from '../interfaces/models.interfaces';
 import { schemaData } from '../models/dbmodels';
 
+/*
+La clase BaseCRUD es la abstracción que proporciona el conjunto de propiedades y métodos para generar dinámicamente la colección en la base de datos. A partir de aqui puedes extenderla a las clases finales, o como hago yo, que la extienda otra abstracción que incluye lo que define cada caso de explotación de colecciones diferente. Es muy recomendable abstraer hasta la clase no abstracta final. Al menos a mi, me ha dado muy buenos resultados:
+*/
+
 abstract class BaseCRUD<modelInterface> {
 
     public model:Model<modelInterface,{},{},{},any>;
@@ -18,6 +22,7 @@ abstract class BaseCRUD<modelInterface> {
 
     constructor(model:modelTypes){ this.model = this.modelCrafter<modelInterface>(schemaData[model]) };
 
+    //Este método genera dinamicamente el modelo en base a un Schema ya generado, dando la posibilidad de generar mas de una colección por caso de explotación de colecciones:
     private modelCrafter<modelInterface>(schemaData:schemaDataType):Model<modelInterface, {}, {}, {}, any>{
         const modelName = schemaData[1].collection;
         const schema = new Schema<modelInterface>(...schemaData);
@@ -25,6 +30,18 @@ abstract class BaseCRUD<modelInterface> {
     }
     
 };
+
+/*
+Esta abstracción obliga a generar los endpoints en la clase que contiene el caso de explotación. Los métodos proporcionados son los siguientes:
+
+toJSON : Debido a que genero los modelos dinámicamente y la alteración del método de un Schema puede resultar algo complejo de entender para juniors, abstraigo un método listo para usar justo antes de la respuesta al cliente que sea mas legible para el desarrollador y que el Schema no se le determine el caso de explotación. En este caso solo necesita los datos a transformar de la consulta y la confirmación del token de usuario que altera dicha respuesta, ofreciendo mas o menos información. Para alterar el método del Schema seria así:
+
+    anySchema.methods.toJSON = function() {
+    const { __v, estado, ...data  } = this.toObject();
+    return data;
+
+bundleGenerator : Con la información de la petición y las tareas de gestión de los ficheros ya realizadas, este método devuelve al método de guardado o edición la información tal y como la exige el ORM. En mi caso, mongoose.
+*/
 
 abstract class StrategyCRUD<modelInterface> extends BaseCRUD<modelInterface> {
 
@@ -34,14 +51,6 @@ abstract class StrategyCRUD<modelInterface> extends BaseCRUD<modelInterface> {
     abstract delCRUD:endpoint;
 
     constructor(model:modelTypes){super(model)}
-
-    //Debido a que los Schema se generan dinámicamente y que cada clase que hereda la abstracción recoge un caso de gestíon de la base de datos ( Y de cada caso pueden salir x modelos ), es mas facil para todos recurrir a un método que devuelva los datos listos para la respuesta al cliente, justo al emitir la respuesta:
-    
-    /*
-    anySchema.methods.toJSON = function() {
-    const { __v, estado, ...data  } = this.toObject();
-    return data;
-    */
 
     abstract toJSON(data:any,assertiveToken:boolean):any;
     
