@@ -1,8 +1,6 @@
 # MyNodeBackendShell
 
-En el desarrollo del BackEnd de la aplicación de un cliente, tras el reciente aprendizaje de patrones de diseño y buenas prácticas, estaba percatándome de que como me enseñaron API REST estaba bien para afianzar esos conocimientos, pero "dar cera, pulir cera" sirve a los estudiantes, no en un proyecto real que no admite la misma deuda técnica. Tomé la determinación de implantar una solución a ese problema donde dicha CRUD es generada dinámicamente, y me permite usar abstracciones hasta llegar a los casos de uso, pudiendo usar un caso para todas las colecciones de datos que se comportasen similar. Esta idea me permitió ahorrar muchísimas lineas de código y generar una solución para API REST con Node.js al problema descrito . Es el trabajo de BackEnd del que mas orgulloso me siento y espero que esta propuesta ayude a mas desarrolladores.
-
-Es mi primer intento de distribuir un código pero mas que para mostrar mi trabajo, para que otros lo puedan aprovechar. Todo feedback para mejorar este código y su distribución es bienvenido.
+Cascarón de Back-end enfocado a API REST, realizado posterior al holgado aprendizaje de patrones de diseño básicos y buenas prácticas, aparte de explotar aun más Node.JS con el empleo de abstracciones, clases y explotando el lenguaje. Aprendí API REST a través de funciones, y eso esta bien para ver de una forma diáfana el funcionamiento y los fundamentos, pero implicaba repetir mucho código y la misma tarea para cada controlador y/o colección de datos . Tome la determinación de resolver este problema con lo aprendido y a través de funciones sencillas cargar todo el entorno. Actualmente tomo este cascarón de referencia en mis trabajos de Back-end, tanto por las buenas prácticas como por esta forma de trabajar, mucho mas conveniente para proyectos grandes.
 
 <div align="center">
   <div style="display: flex; margin:15px">
